@@ -15,5 +15,6 @@ services:
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - ./rss2email:/root/.rss2email
+    - ./templates/default.tmpl:/root/.rss2email/email.tmpl:ro
     restart: unless-stopped
 
