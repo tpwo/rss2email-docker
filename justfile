@@ -1,3 +1,7 @@
+# print help
+default:
+    just -l
+
 # start service
 up:
 	just _check_dot_env
