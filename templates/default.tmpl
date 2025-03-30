@@ -1,41 +1,13 @@
-{{/* This is the default template which is used by default to generate emails.
-
-     As you might imagine it is a Golang text/template file.
-
-     Several fields and functions are available:
-
-      {{.FeedTitle}}  - The human-readable title of the source feed.
-      {{.Feed}}       - The URL of the feed from which the item came.
-      {{.From}}       - The email address which sends the email.
-      {{.Link}}       - The link to the new entry.
-      {{.Subject}}    - The subject of the new entry.
-      {{.To}}         - The recipient of the email.
-
-     There is also access to the {{.RSSFeed}} and {{.RSSItem}} available, in
-     case you need access to other fields which are not exported expliclty.
-     Using that approach you can access {{.RSSItem.GUID}}, for example.
-
-     The following functions are also available:
-
-      {{env "USER"}}              -> Return the given environmental variable
-      {{quoteprintable .Link}}    -> Quote the specified field.
-      {{encodeHeader .Subject}}   -> Quote the specified field to be used in mail header.
-      {{split "STRING:HERE" ":"}} -> Split a string into an array by deliminator
-
-     This comment will be stripped from the generated email.
-
+{{/* This is a template for rss2email (https://github.com/skx/rss2email) which
+     mimics the Feedburner notification emails (with some small changes).
   */ -}}
 Content-Type: multipart/mixed; boundary=21ee3da964c7bf70def62adb9ee1a061747003c026e363e47231258c48f1
 From: {{.From}}
 To: {{.To}}
-Subject: [rss2email] {{if .Tag}}{{encodeHeader .Tag}} {{end}}{{encodeHeader .Subject}}
+Subject: [{{.FeedTitle}}] {{.Subject}}
 X-RSS-Link: {{.Link}}
 X-RSS-Feed: {{.Feed}}
-{{- if .Tag}}
-X-RSS-Tags: {{.Tag}}
-{{- end}}
 X-RSS-GUID: {{.RSSItem.GUID}}
-Content-Base: {{.Link}}
 Mime-Version: 1.0
 
 --21ee3da964c7bf70def62adb9ee1a061747003c026e363e47231258c48f1
@@ -57,11 +29,68 @@ Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p><a href=3D"{{quoteprintable .Link}}">{{quoteprintable .Subject}}</a></p>
+<!DOCTYPE html>=0A<html>=0A=0A<head>=0A    <META http-equiv=3D"Content-Type=
+" content=3D"text/html; charset=3DUTF-8">=0A    <title>
+{{.Subject}}
+-
+{{.FeedTitle}}
+</title>=0A=0A    <style type=3D"text/css">=0A        h1 a:hover {=0A      =
+      background-color: #888;=0A            color: #fff !important;=0A     =
+   }=0A=0A        h1#feed-title {=0A            margin: 3px;=0A            =
+padding-bottom: 6px;=0A        }=0A=0A        h1#feed-title a {=0A         =
+   color: #888;=0A            font-size: 22px;=0A            font-family: A=
+rial, Helvetica, Sans-Serif;=0A            font-weight: normal;=0A         =
+   text-decoration: none !important;=0A        }=0A=0A        div#emailbody=
+ {=0A            margin: 0 2em;=0A            font-family: Georgia, Helveti=
+ca, Arial, Sans-Serif;=0A            line-height: 140%;=0A            font-=
+size: 13px;=0A            color: #000000;=0A        }=0A=0A        div#emai=
+lbody #itemcontentlist {=0A            line-height: 1.4em;=0A            ma=
+rgin: 3px;=0A        }=0A=0A        div#emailbody #itemcontentlist #item-ti=
+tle {=0A            margin: calc(1em + 3px) 0 3px 0;=0A        }=0A=0A     =
+   div#emailbody #itemcontentlist #item-title a {=0A            font-family=
+: Arial, Helvetica, Sans-Serif;=0A            font-size: 18px;=0A        }=
+=0A=0A        div#emailbody #itemcontentlist #item-timestamp {=0A          =
+  font-size: 13px;=0A            color: #555;=0A            margin: 7px 0 3=
+px 0;=0A            font-family: Georgia, Helvetica, Arial, Sans-Serif;=0A =
+           line-height: 140%;=0A            font-size: 13px;=0A        }=0A=
+=0A        div#emailbody #itemcontentlist div#message {=0A            margi=
+n: 0;=0A            font-family: Georgia, Helvetica, Arial, Sans-Serif;=0A =
+           line-height: 140%;=0A            font-size: 13px;=0A            =
+color: #000000;=0A        }=0A=0A        div#emailbody #itemcontentlist div=
+#message ul {=0A            list-style-type: square;=0A            padding-=
+left: 1em;=0A        }=0A=0A        div#emailbody #itemcontentlist div#mess=
+age blockquote {=0A            padding-left: 6px;=0A            border-left=
+: 6px solid #dadada;=0A            margin-left: 1em;=0A        }=0A=0A     =
+   div#emailbody #itemcontentlist div#message li {=0A            margin-bot=
+tom: 1em;=0A            margin-left: 1em;=0A        }=0A=0A        #itemcon=
+tentlist a:link,=0A        #itemcontentlist a:visited,=0A        #itemconte=
+ntlist a:active {=0A            color: #000099;=0A            font-weight: =
+bold;=0A        }=0A=0A        #footer {=0A            border-top: 1px soli=
+d #999;=0A            padding-top: 7px;=0A            margin-top: 1.5em;=0A=
+            width: 100%;=0A        }=0A=0A        #footer #footer-1 {=0A   =
+         font-family: Helvetica, Arial, Sans-Serif;=0A            font-size=
+: 11px;=0A            margin: 0 6px 1.2em 0;=0A            color: #333;=0A =
+       }=0A=0A        #footer #footer-2 {=0A            float: right;=0A   =
+         font-family: Helvetica, Arial, Sans-Serif;=0A            font-size=
+: 11px;=0A            margin: 0 6px 1.2em 0;=0A            color: #333;=0A =
+       }=0A=0A        img {=0A            border: none;=0A        }=0A    <=
+/style>=0A</head>=0A=0A<body>=0A    <div id=3D"emailbody">=0A        <h1 id=
+=3D"feed-title">
+<a href=3D"{{quoteprintable .Feed}}">{{quoteprintable .FeedTitle}}</a></h1>
+<hr style=3D"border: 1px solid #ccc; padding: 0; margin: 0;">=0A        <di=
+v id=3D"itemcontentlist">=0A            <p id=3D"item-title">
+<a name=3D"1" href=3D"{{quoteprintable .Link}}">{{quoteprintable .Subject}}
+</a></p>=0A            <p id=3D"item-timestamp"><span>Posted:</span>=20
+{{quoteprintable .RSSItem.Published}}
+</p>=0A            <div id=3D"message">
 {{.HTML}}
-<p><a href=3D"{{quoteprintable .Link}}">{{quoteprintable .Subject}}</a></p>
+</div>=0A        </div>=0A        <div id=3D"footer">=0A            <div id=
+=3D"footer-2">Email delivery powered by <a href=3D"https://github.com/skx/r=
+ss2email">rss2email</a></div>=0A            <div id=3D"footer-1">You are su=
+bscribed to email updates from=20
+<a href=3D"{{quoteprintable .Feed}}">{{quoteprintable .FeedTitle}}</a>.
+</div>=0A        </div>=0A    </div>=0A</body>=0A=0A</html>
 --4186c39e13b2140c88094b3933206336f2bb3948db7ecf064c7a7d7473f2--
 
 --76a1282373c08a65dd49db1dea2c55111fda9a715c89720a844fabb7d497--
 --21ee3da964c7bf70def62adb9ee1a061747003c026e363e47231258c48f1--
-

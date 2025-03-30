@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{{.FeedTitle}}</title>
+
+    <style type="text/css">
+        h1 a:hover {
+            background-color: #888;
+            color: #fff !important;
+        }
+
+        h1#feed-title {
+            margin: 3px;
+            padding-bottom: 6px;
+        }
+
+        h1#feed-title a {
+            color: #888;
+            font-size: 22px;
+            font-family: Arial, Helvetica, Sans-Serif;
+            font-weight: normal;
+            text-decoration: none !important;
+        }
+
+        div#emailbody {
+            margin: 0 2em;
+            font-family: Georgia, Helvetica, Arial, Sans-Serif;
+            line-height: 140%;
+            font-size: 13px;
+            color: #000000;
+        }
+
+        div#emailbody #itemcontentlist {
+            line-height: 1.4em;
+            margin: 3px;
+        }
+
+        div#emailbody #itemcontentlist #item-title {
+            margin: calc(1em + 3px) 0 3px 0;
+        }
+
+        div#emailbody #itemcontentlist #item-title a {
+            font-family: Arial, Helvetica, Sans-Serif;
+            font-size: 18px;
+        }
+
+        div#emailbody #itemcontentlist #item-timestamp {
+            font-size: 13px;
+            color: #555;
+            margin: 7px 0 3px 0;
+            font-family: Georgia, Helvetica, Arial, Sans-Serif;
+            line-height: 140%;
+            font-size: 13px;
+        }
+
+        div#emailbody #itemcontentlist div#message {
+            margin: 0;
+            font-family: Georgia, Helvetica, Arial, Sans-Serif;
+            line-height: 140%;
+            font-size: 13px;
+            color: #000000;
+        }
+
+        div#emailbody #itemcontentlist div#message ul {
+            list-style-type: square;
+            padding-left: 1em;
+        }
+
+        div#emailbody #itemcontentlist div#message blockquote {
+            padding-left: 6px;
+            border-left: 6px solid #dadada;
+            margin-left: 1em;
+        }
+
+        div#emailbody #itemcontentlist div#message li {
+            margin-bottom: 1em;
+            margin-left: 1em;
+        }
+
+        #itemcontentlist a:link,
+        #itemcontentlist a:visited,
+        #itemcontentlist a:active {
+            color: #000099;
+            font-weight: bold;
+        }
+
+        #footer {
+            border-top: 1px solid #999;
+            padding-top: 7px;
+            margin-top: 1.5em;
+            width: 100%;
+        }
+
+        #footer #footer-1 {
+            font-family: Helvetica, Arial, Sans-Serif;
+            font-size: 11px;
+            margin: 0 6px 1.2em 0;
+            color: #333;
+        }
+
+        #footer #footer-2 {
+            float: right;
+            font-family: Helvetica, Arial, Sans-Serif;
+            font-size: 11px;
+            margin: 0 6px 1.2em 0;
+            color: #333;
+        }
+
+        img {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="emailbody">
+        <h1 id="feed-title"><a href="{{quoteprintable .Feed}}">
+        {{quoteprintable .FeedTitle}}</a></h1>
+        <hr style="border: 1px solid #ccc; padding: 0; margin: 0;">
+        <div id="itemcontentlist">
+            <p id="item-title">
+                <a name="1" href="{{quoteprintable .Link}}">
+                {{quoteprintable .Subject}}</a>
+            </p>
+            <p id="item-timestamp">
+                <span>Posted:</span>
+                {{quoteprintable .RSSItem.Published}}
+            </p>
+            <div id="message">
+                {{.Text}}
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footer-2">
+                Email delivery powered by
+                <a href="https://github.com/skx/rss2email">rss2email</a>
+            </div>
+            <div id="footer-1">
+                You are subscribed to email updates from
+                <a href="{{quoteprintable .Feed}}">
+                  {{quoteprintable .FeedTitle}}
+                </a>.
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
