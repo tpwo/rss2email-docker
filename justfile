@@ -3,18 +3,22 @@ up:
 	just _check_dot_env
 	docker compose up --detach
 
-# pull newest image and start service
+# after adding new feeds, register them in db, so there won't be email spam
 update:
 	just _check_dot_env
-	docker compose up --detach --pull always
-
-# add a new feed
-addFeed feed:
-	docker exec rss2email rss2email add {{feed}}
+	docker compose run --remove-orphans rss2email cron -send=false user@example.com
 
 # list feeds
 listFeeds:
-	docker exec rss2email rss2email list
+	docker compose exec rss2email rss2email list
+
+# add a new feed
+addFeed feed:
+	docker compose exec rss2email rss2email add {{feed}}
+
+# delete a feed
+deleteFeed feed:
+	docker compose exec rss2email rss2email delete {{feed}}
 
 # stop service
 stop:
