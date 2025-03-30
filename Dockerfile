@@ -33,8 +33,6 @@ RUN git clone --branch release-"$VERSION" https://github.com/skx/rss2email $GOPA
 
 WORKDIR $GOPATH/src/github.com/skx/rss2email/
 
-COPY . .
-
 RUN go build -ldflags "-X main.version=$VERSION" -o /go/bin/rss2email
 
 # STEP2 - Deploy-image
