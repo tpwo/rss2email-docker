@@ -23,9 +23,13 @@
 ###########################################################################
 FROM golang:alpine AS builder
 
+RUN apk add --no-cache git
+
 ARG VERSION
 
 LABEL org.opencontainers.image.source=https://github.com/skx/rss2email/
+
+RUN git clone --branch release-"$VERSION" https://github.com/skx/rss2email $GOPATH/src/github.com/skx/rss2email/
 
 # Create a working-directory
 WORKDIR $GOPATH/src/github.com/skx/rss2email/

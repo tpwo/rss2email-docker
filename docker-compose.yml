@@ -1,7 +1,10 @@
 services:
   rss2email:
     container_name: rss2email
-    image: ghcr.io/skx/rss2email:3.4.0
+    build:
+      context: .
+      args:
+        VERSION: 3.4.0
     entrypoint: rss2email
     command: daemon -verbose ${SMTP_USERNAME}
     working_dir: /root
