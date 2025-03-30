@@ -31,33 +31,18 @@ LABEL org.opencontainers.image.source=https://github.com/skx/rss2email/
 
 RUN git clone --branch release-"$VERSION" https://github.com/skx/rss2email $GOPATH/src/github.com/skx/rss2email/
 
-# Create a working-directory
 WORKDIR $GOPATH/src/github.com/skx/rss2email/
 
-# Copy the source to it
 COPY . .
 
-# Build the binary - ensuring we pass the build-argument
 RUN go build -ldflags "-X main.version=$VERSION" -o /go/bin/rss2email
 
 # STEP2 - Deploy-image
 ###########################################################################
 FROM alpine
 
-# Copy the binary.
 COPY --from=builder /go/bin/rss2email /usr/local/bin/
 
-# Set entrypoint
 ENTRYPOINT [ "/usr/local/bin/rss2email" ]
 
-# Set default command
 CMD help
-
-# Create a group and user
-RUN addgroup app && adduser -D -G app -h /app app
-
-# Tell docker that all future commands should run as the app user
-USER app
-
-# Set working directory
-WORKDIR /app
