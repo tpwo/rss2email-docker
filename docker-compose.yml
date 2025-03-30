@@ -1,18 +1,18 @@
 services:
   rss2email:
     container_name: rss2email
-    command: daemon -verbose ${SMTP_USERNAME}
+    image: ghcr.io/skx/rss2email:3.4.0
     entrypoint: rss2email
-    working_dir: /app
+    command: daemon -verbose ${SMTP_USERNAME}
+    working_dir: /root
     user: root
     environment:
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SMTP_HOST: ${SMTP_HOST}
       SMTP_PORT: ${SMTP_PORT}
-    restart: unless-stopped
-    image: ghcr.io/skx/rss2email:master
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - ./rss2email:/root/.rss2email
+    restart: unless-stopped
 
