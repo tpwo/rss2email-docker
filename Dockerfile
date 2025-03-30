@@ -46,3 +46,5 @@ COPY --from=builder /go/bin/rss2email /usr/local/bin/
 ENTRYPOINT [ "/usr/local/bin/rss2email" ]
 
 CMD help
+
+WORKDIR /root
