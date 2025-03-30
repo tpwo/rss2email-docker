@@ -5,14 +5,14 @@ services:
     working_dir: /app
     user: app
     environment:
-    - TZ=UTC
-    - SMTP_USERNAME=steve@example.com
-    - SMTP_PASSWORD=blah.blah.blah!
-    - SMTP_HOST=smtp.gmail.com
-    - SMTP_PORT=587
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
     restart: unless-stopped
     image: ghcr.io/skx/rss2email:master
     volumes:
+    - /etc/localtime:/etc/localtime:ro
     - rss2email-data:/app/.rss2email
 
 volumes:
