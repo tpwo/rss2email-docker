@@ -20,6 +20,10 @@ addFeed feed:
 deleteFeed feed:
 	docker compose exec rss2email rss2email delete {{feed}}
 
+# show errors from the last 24h
+showErrors:
+	docker compose logs rss2email --since 24h | grep error
+
 # stop service
 stop:
 	docker compose stop
