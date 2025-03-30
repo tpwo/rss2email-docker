@@ -22,7 +22,7 @@ deleteFeed feed:
 
 # show errors from the last 24h
 showErrors:
-	docker compose logs rss2email --since 24h | grep error
+	docker compose logs rss2email --since 24h | grep error || exit 0
 
 # stop service
 stop:
