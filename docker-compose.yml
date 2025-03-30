@@ -1,5 +1,6 @@
 services:
   rss2email:
+    container_name: rss2email
     command: daemon -verbose steve@steve.fi
     entrypoint: rss2email
     working_dir: /app
