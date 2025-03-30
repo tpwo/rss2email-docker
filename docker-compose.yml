@@ -6,7 +6,7 @@ services:
       args:
         VERSION: 3.4.0
     entrypoint: rss2email
-    command: daemon ${SMTP_USERNAME}
+    command: daemon -verbose ${SMTP_USERNAME}
     environment:
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
