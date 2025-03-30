@@ -40,7 +40,7 @@
 Content-Type: multipart/mixed; boundary=21ee3da964c7bf70def62adb9ee1a061747003c026e363e47231258c48f1
 From: {{.From}}
 To: {{.To}}
-Subject: [rss2mail] [video] [{{encodeHeader .RSSItem.Author.Name}}] {{if .Tag}}{{encodeHeader .Tag}} {{end}}{{encodeHeader .Subject}}
+Subject: [yt][{{encodeHeader .RSSItem.Author.Name}}] {{if .Tag}}{{encodeHeader .Tag}} {{end}}{{encodeHeader .Subject}}
 X-RSS-Link: {{.Link}}
 X-RSS-Feed: {{.Feed}}
 {{- if .Tag}}
