@@ -16,5 +16,6 @@ services:
     - /etc/localtime:/etc/localtime:ro
     - ./rss2email:/root/.rss2email
     - ./templates/default.tmpl:/root/.rss2email/email.tmpl:ro
+    - ./templates:/root/.rss2email/templates:ro
     restart: unless-stopped
 
