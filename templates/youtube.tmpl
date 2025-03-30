@@ -32,9 +32,9 @@
       {{.RSSItem.Author.Name}}  - The author name
       {{.RSSItem.Published}}    - The published date
       {{.RSSItem.Extensions}}   - Represents the rest of the fields that were not parsed. They are saved using the Extensions type[1]. The fields managed by this rss2email are detailed here [2].
-     
+
      Youtube uses the Atom format, therefore the description is not parsed by gofeed and is stored in the extensions. The template discovers the field by looking for the description name.
-     [1] https://pkg.go.dev/github.com/mmcdole/gofeed@v1.2.1/extensions#Extensions 
+     [1] https://pkg.go.dev/github.com/mmcdole/gofeed@v1.2.1/extensions#Extensions
      [2] https://pkg.go.dev/github.com/mmcdole/gofeed@v1.2.1#readme-default-mappings
   */ -}}
 Content-Type: multipart/mixed; boundary=21ee3da964c7bf70def62adb9ee1a061747003c026e363e47231258c48f1

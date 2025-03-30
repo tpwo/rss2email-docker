@@ -18,4 +18,3 @@ services:
     - ./templates/default.tmpl:/root/.rss2email/email.tmpl:ro
     - ./templates:/root/.rss2email/templates:ro
     restart: unless-stopped
-

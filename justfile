@@ -14,7 +14,7 @@ addFeed feed:
 
 # list feeds
 listFeeds:
-	docker exec rss2email rss2email list 
+	docker exec rss2email rss2email list
 
 # stop service
 stop:
