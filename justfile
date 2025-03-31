@@ -29,12 +29,12 @@ delete feed:
 	docker compose exec rss2email rss2email delete {{feed}}
 
 # show sent emails from the last 24h
-sent:
-    docker compose logs rss2email --since 24h | grep 'email sent' | awk -F ' [a-z\.]+=' '{print $2 " " $8 " " $7}'
+sent since='24h':
+    docker compose logs rss2email --since {{since}} | grep 'email sent' | awk -F ' [a-z\.]+=' '{print $2 " " $8 " " $7}'
 
 # show errors from the last 24h
-errors:
-	docker compose logs rss2email --since 24h | grep error || exit 0
+errors since='24h':
+	docker compose logs rss2email --since {{since}} | grep error || exit 0
 
 # run a custom command in the running container
 command +cmd:
