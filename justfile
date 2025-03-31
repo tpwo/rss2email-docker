@@ -7,6 +7,10 @@ up:
 	just _check_dot_env
 	docker compose up --detach
 
+# stop service
+stop:
+	docker compose stop
+
 # after adding new feeds, register them in db, so there won't be email spam
 update:
 	just _check_dot_env
@@ -17,11 +21,11 @@ listFeeds:
 	docker compose exec rss2email rss2email list
 
 # add a new feed
-addFeed feed:
+add feed:
 	docker compose exec rss2email rss2email add {{feed}}
 
 # delete a feed
-deleteFeed feed:
+delete feed:
 	docker compose exec rss2email rss2email delete {{feed}}
 
 # show sent emails from the last 24h
@@ -49,10 +53,6 @@ applyYtTemplate:
 	    next; \
 	}  \
 	{ print }'
-
-# stop service
-stop:
-	docker compose stop
 
 _check_dot_env:
 	test -f .env || echo '.env file not found' || exit 1
