@@ -1,4 +1,4 @@
-# rss2email docker config
+# rss2email Docker Config
 
 Configuration for my dockerized instance of [rss2email](https://github.com/skx/rss2email).
 
