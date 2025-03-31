@@ -19,9 +19,9 @@ cd rss2email-config
 Create `.env` file by providing your values for:
 
 - `SMTP_USERNAME` -> recipient and sender address
-- `SMTP_PASSWORD` -> your email password, for Gmail you have to enable 2FA and create an app password [here](https://myaccount.google.com/apppasswords)
+- `SMTP_PASSWORD` -> your email password, e.g. for Gmail you have to enable 2FA and create an app password [here](https://myaccount.google.com/apppasswords)
 - `SMTP_HOST` -> e.g. `smtp.gmail.com` for Gmail
-- `SMTP_PORT` -> e.g. 587 for Gmail
+- `SMTP_PORT` -> e.g. `587` for Gmail
 
 You can copy the sample file and edit it:
 
