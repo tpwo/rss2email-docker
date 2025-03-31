@@ -1,10 +1,11 @@
 # print help
 default:
-    just -l
+	just -l
 
 # start service
 up:
 	just _check_dot_env
+	just _check_feeds_txt
 	docker compose up --detach
 
 # stop service
@@ -56,3 +57,6 @@ applyYtTemplate:
 
 _check_dot_env:
 	test -f .env || echo '.env file not found' || exit 1
+
+_check_feeds_txt:
+	test -f state/feeds.txt || (echo 'creating empty feeds.txt as not found' && echo touch state/feeds.txt)
