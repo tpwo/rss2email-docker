@@ -12,8 +12,8 @@ Configuration for my dockerized instance of [rss2email](https://github.com/skx/r
 Clone repo and enter the folder:
 
 ```
-git clone https://github.com/tpwo/rss2email-config
-cd rss2email-config
+git clone https://github.com/tpwo/rss2email-docker-config
+cd rss2email-docker-config
 ```
 
 Create `.env` file by providing your values for:
