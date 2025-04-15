@@ -1,6 +1,6 @@
-# rss2email Docker Config
+# rss2email-docker
 
-Configuration for my dockerized instance of [rss2email](https://github.com/skx/rss2email).
+Run your instance of [rss2email](https://github.com/skx/rss2email) in Docker.
 
 ## Requirements
 
